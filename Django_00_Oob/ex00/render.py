@@ -84,6 +84,8 @@ def render(filename):
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print('Usage: python render.py <file.template>')
+        print('Example: python render.py index.template')
+        print('\t the program will generate <basename>.html file replacing variables in <basename>.template from settings.py')
         sys.exit(1)
     filename = sys.argv[1]
     check_args(filename)
