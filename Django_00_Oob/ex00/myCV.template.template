@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume - {name} {surname}</title>
+</head>
+<body>
+    <h1>Resume of {name} {surname}</h1>
+    <p><strong>Age:</strong> {age} years</p>
+    <p><strong>Profession:</strong> {profession}</p>
+</body>
+</html>
