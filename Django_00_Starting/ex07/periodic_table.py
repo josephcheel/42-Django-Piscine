@@ -24,58 +24,51 @@ def parse_input():
 		periodic_table.append(element_periodic_table)
 	return periodic_table
 
-
-# def create_html_file():
-# 	with open("periodic_table.html", "w") as f:
-# 		f.write("<html>\n")
-# 		f.write("<head>\n")
-# 		f.write("<title>Periodic Table</title>\n")
-# 		f.write("</head>\n")
-# 		f.write("<body>\n")
-# 		f.write("<table>\n")
-# 		f.write("<tr>\n")
-# 		f.write("<th>Name</th>\n")
-# 		f.write("<th>Symbol</th>\n")
-# 		f.write("<th>Atomic number</th>\n")
-# 		f.write("<th>Atomic mass</th>\n")
-# 		f.write("</tr>\n")
-# 		f.write("</table>\n")
-# 		f.write("</body>\n")
-# 		f.write("</html>\n")
-
-def create_html_file(periodic_table):
+def create_html_file(content):
 		with open("periodic_table.html", "w") as f:
-			f.write("<html>\n")
-			f.write("<head>\n")
-			f.write("<title>Periodic Table</title>\n")
-			f.write("</head>\n")
-			f.write("<body>\n")
-			f.write("<table border='1'>\n")
-			f.write("<tr>\n")
-			f.write("<th>Name</th>\n")
-			f.write("<th>Symbol</th>\n")
-			f.write("<th>Atomic number</th>\n")
-			f.write("<th>Atomic mass</th>\n")
-			f.write("</tr>\n")
-			for element in periodic_table:
-				f.write("<tr>\n")
-				f.write(f"<td>{element['name']}</td>\n")
-				# f.write(f"<td>{element['symbol']}</td>\n")
-				f.write(f"<td>{element['number']}</td>\n")
-				# f.write(f"<td>{element['weight']}</td>\n")
-				f.write("</tr>\n")
-			f.write(f"<td>{element['symbol']}</td>\n")
-			f.write(f"<td>{element['weight']}</td>\n")
-			f.write("</tr>\n")
-			f.write("</table>\n")
-			f.write("</body>\n")
-			f.write("</html>\n")
+			f.write(content)
 
-	
-if __name__ == '__main__':
+def generate_html_periodic_element(element: dict) -> str:
+	html_element = ' ' * 16 + "<td style=\"border: 1px solid black; padding:10px;\">\n"
+	html_element += ' ' * 20 + f"<h4>{element['name']}</h4>\n"
+	html_element += ' ' * 20 + "<ul>\n"
+	html_element += ' ' * 24 + f"<li>Symbol: {element['small']}</li>\n"
+	html_element += ' ' * 24 + f"<li>Atomic Number: {element['number']}</li>\n"
+	html_element += ' ' * 24 + f"<li>Atomic Mass: {element['molar']}</li>\n"
+	html_element += ' ' * 20 + "</ul>\n"
+	html_element += ' ' * 16 + "</td>\n"
+	return html_element
+
+def main():
 	periodic_table = parse_input()
-	# length = len(periodic_table)
-	# print(f"Found {length} elements")
-	print(periodic_table)
-	create_html_file(periodic_table)
+	file_content = "<!DOCTYPE html>\n\
+<html lang=\"en\">\n\
+<head>\n\
+    <meta charset=\"UTF-8\">\n\
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\
+    <title>periodic table</title>\n\
+</head>\n\
+<body>\n"
+
+	file_content += '    <table>\n            <tr>\n'
+	printing_index = 0
+	for element in periodic_table:
+		if int(element["position"]) < printing_index:
+			printing_index = 0
+			file_content += " </tr><tr>\n"
+		for _ in range(printing_index, int(element["position"]) - 1):
+			file_content += ' ' * 16 + "<td></td>\n"
+		printing_index = int(element["position"])
+		file_content += generate_html_periodic_element(element)
+	
+	file_content += ' ' * 16 + '</tr>\n'
+	file_content += ' ' * 12 + '</table>\n'
+	file_content += ' ' * 8 + '</body>\n'
+	file_content += '</html>\n'
+	create_html_file(file_content)
+
+
+if __name__ == '__main__':
+	main()
+	
 
