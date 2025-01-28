@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>noir</th>
+			<th>rouge</th>
+			<th>bleu</th>
+			<th>vert</th>
+		</tr>
+		{% for index, noir, rouge, bleu, vert in all_shades %}
+		<tr>
+			<!-- <td> {{ index }} </td> -->
+			<td style="width: 80px; height: 40px; background-color: rgb({{ noir.0 }}, {{ noir.1 }}, {{ noir.2 }});"></td>
+			<td style="width: 80px; height: 40px; background-color: rgb({{ rouge.0 }}, {{ rouge.1 }}, {{ rouge.2 }});"></td>
+			<td style="width: 80px; height: 40px; background-color: rgb({{ bleu.0 }}, {{ bleu.1 }}, {{ bleu.2 }});"></td>
+			<td style="width: 80px; height: 40px; background-color: rgb({{ vert.0 }}, {{ vert.1 }}, {{ vert.2 }});"></td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

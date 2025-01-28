@@ -1,0 +1,16 @@
+{% extends 'ex01/base.html' %}
+{% block title %}Ex01: Display process of a static page.{% endblock %}
+{% block header1 %}Ex01: Display process of a static page.{% endblock %}
+{% block content %}
+<!-- Description: In this page, describe the process causing the display of a static web
+page from a simple template going through a view, from the request to the
+answer. -->
+	<p>When a user makes a request to a Django-powered website, the request is directed to the URL dispatcher. </p>
+	<p>The URL dispatcher is a Python function that takes a URL and returns the appropriate view. </p>
+	<p>The view is a Python function that takes a web request and returns a web response. </p>
+	<p>The view is responsible for processing the request and returning the response. </p>
+	<p>The response is typically an HTML page that is rendered using a Django template. </p>
+	<p>The template is a static file that contains HTML, CSS, and JavaScript code. </p>
+	<p>The template is rendered by the Django template engine, which processes the template and replaces variables with values. </p>
+	<p>The rendered template is returned to the view, which returns the response to the user. </p>
+{% endblock %}
