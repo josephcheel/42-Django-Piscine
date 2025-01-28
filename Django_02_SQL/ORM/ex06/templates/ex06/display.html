@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Display</title>
+</head>
+<body>
+	<table style="width: 100%; border: 1px solid black;">
+		<tr>
+			<th>Title</th>
+			<th>Episode nbr</th>
+			<th>Opening crawl</th>
+			<th>Director</th>
+			<th>Producer</th>
+			<th>Release date</th>
+			<th>created</th>
+			<th>updated</th>
+		</tr>
+		{% for episode in episodes %}
+		<tr style="text-align: center;">
+			<td>{{ episode.0 }}</td>
+			<td>{{ episode.1 }}</td>
+			<td>{{ episode.2 }}</td>
+			<td>{{ episode.3 }}</td>
+			<td>{{ episode.4 }}</td>
+			<td>{{ episode.5 }}</td>
+			<td>{{ episode.6 }}</td>
+			<td>{{ episode.7 }}</td>
+		</tr>
+		{% empty %}
+			<p>No data</p>
+		{% endfor %}
+	</table>
+</body>
+</html>
