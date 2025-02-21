@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	{% if characters %}
+		<table style="border: 1px solid black;">
+			<tr>
+				<th>Name</th>
+				<th>Homeworld</th>
+				<th>Climate</th>
+			</tr>
+		{% for character in characters %}
+			<tr>
+				<td>{{ character.name }}</td>
+				<td>{{ character.homeworld.name }}</td>
+				<td>{{ character.homeworld.climate }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<h1>No data available, please use the following command line before use:</h1>
+		<p> python3 manage.py loaddata ex09/ex09_initial_data.json</p>
+	{% endif %}
+</body>
+</html>

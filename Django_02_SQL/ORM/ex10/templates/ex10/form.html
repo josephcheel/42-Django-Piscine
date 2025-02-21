@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	{% if error %}
+		<p style="color: red;">Please correct the error. {{ error }}</p>
+	{% endif %}
+	<form action="{% url 'ex10:form' %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Submit">
+	</form>
+	{%  if people %}
+		<ul>
+			{% for person in people %}
+				<li>{{ person.name }} - {{ person.gender }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</body>
+</html>

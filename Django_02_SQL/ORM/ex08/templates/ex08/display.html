@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	{% if not people %}
+	<h1>No data availeable</h1>
+	{% else %}
+	<table style="border: 1px solid black ;">
+		<tr>
+			<th>names</th>
+			<th>homeworld</th>
+			<th>climate</th>
+		</tr>
+		{% for person in people %}
+		<tr>
+			<td>{{ person.0 }}</td>
+			<td>{{ person.1 }}</td>
+			<td>{{ person.2 }}</td>
+		</tr>
+		{% endfor %}
+	{% endif %}
+	</table>
+</body>
+</html>
