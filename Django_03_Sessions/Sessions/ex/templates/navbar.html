@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand mb-0" href="{% url 'index' %}">Life Pro Tips</a>
+	<div class="ms-5" id="navbarNav">
+		<ul class="navbar-nav gap-5">
+			<!-- <li class="nav-item active">
+				<a class="nav-link" href="/">Home</a>
+			</li> -->
+			{% if not user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'register' %}">Register</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+			<li class="nav-item ms-5">
+				{% if rep_points %}
+					<span id="navbar-text" class="nav-item h1">Hello {{ username }}! ({{rep_points}})</span>
+				{% else %}
+					<span id="navbar-text" class="nav-item h1">Hello {{ username }}!</span>
+				{% endif %}
+			</li>
+		</ul>
+	</div>
+	{% if user.is_authenticated %}
+	<span style="margin-right: 10vh; margin-left:  10vh;"></span>
+		<a href="{% url 'logout' %}">Logout</a>
+	</span>
+	{% endif %}
+</nav>
+<script>
+	setInterval(() => {
+		fetch('/get_random_username/', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': '{{ csrf_token }}'
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.username && data.rep_points >= 0) {
+				document.querySelector('#navbar-text').textContent = `Hello ${data.username}! (${data.rep_points})`;
+			}
+			else if (data.username) {
+				document.querySelector('#navbar-text').textContent = `Hello ${data.username}!`;
+			}
+		});
+	}, 8500);
+	document.addEventListener('DOMContentLoaded', () => {
+		fetch('/get_random_username/', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': '{{ csrf_token }}'
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.username && data.rep_points >= 0) {
+				document.querySelector('#navbar-text').textContent = `Hello ${data.username}! (${data.rep_points})`;
+			}
+			else if (data.username) {
+				document.querySelector('#navbar-text').textContent = `Hello ${data.username}!`;
+			}
+		});
+	});
+</script>

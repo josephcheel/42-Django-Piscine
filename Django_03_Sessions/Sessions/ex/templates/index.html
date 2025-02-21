@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block pageTitle %}Home{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="d-flex justify-content-center align-items-center mt-5">
+	<form method="post", action="{% url 'add_tip' %}">
+		{% csrf_token %}
+		<h1>Welcome to the home page</h1>
+		<p>Here you can find the greatest Life Pro Tips</p>
+
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn-primary" type="submit">Submit</button>
+	</form>
+</div>
+	{% if posts %}
+		{% for post in posts %}
+		<div class="d-flex justify-content-center align-items-center mt-5">
+			<div class="card" style="width: 30rem;">
+				<div class="card-body">
+					<!-- <h5 class="card-title">{{ post.title }}</h5> -->
+					<p class="card-text">{{ post.content }}</p>
+					<p class="card-text">{{ post.author }} - {{ post.created_at }}</p>
+					
+					<div class="d-flex justify-content-between align-items-center mt-2">
+						{{ post.upvotes }} <img height="20" src="{% static 'thumbsup.svg' %}" onclick="window.location.href='/upvote/{{ post.id }}'" >
+						{% if post.author == user.username or has_downvote_permission %}
+						{{ post.downvotes }} <img height="20" src="{% static 'thumbsdown.svg' %}" onclick="window.location.href='/downvote/{{ post.id }}'">
+						{% endif %}
+						{% if post.author == user.username or has_delete_permission %}
+							<button class="btn btn-danger btn-sm" onclick="window.location.href='/delete/{{ post.id }}'">Delete</button>
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+	<div class="d-flex justify-content-center align-items-center mt-5">
+		<h1>No posts available</h1>
+	</div>
+	{% endif %}
+	{% if form.errors %}
+		<div class="alert alert-danger mt-3 w-50">
+			<strong>Oops!</strong> Something went wrong.
+			<ul>
+				{% for field, error in form.errors.items %}
+				<li> {{ error|join:", " }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	{% if messages %}
+		<div class="alert alert-info mt-3">
+			{% for message in messages %}
+			{{ message }}
+			{% endfor %}
+		</div>
+		{% endif %}
+{% else %}
+{% endif %}
+{% endblock %}
