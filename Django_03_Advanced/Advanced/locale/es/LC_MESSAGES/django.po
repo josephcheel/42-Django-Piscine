@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-21 00:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: Advanced/settings.py:113
+msgid "English"
+msgstr "Inglés"
+
+#: Advanced/settings.py:114
+msgid "Spanish"
+msgstr "Español"
+
+#: ex/templates/Base.html:12 ex/templates/Base.html:34
+#: ex/templates/articles_list.html:6 ex/templates/nav.html:23
+msgid "Articles"
+msgstr "Artículos"
+
+#: ex/templates/Base.html:25
+msgid "Translate to English"
+msgstr "Translate to English"
+
+#: ex/templates/Base.html:35
+msgid "Share your writings"
+msgstr "Comparte tus textos"
+
+#: ex/templates/article_details.html:6 ex/templates/publications_list.html:24
+msgid "Details"
+msgstr "Detalles"
+
+#: ex/templates/article_details.html:12 ex/templates/articles_list.html:12
+#: ex/templates/favourites_list.html:12 ex/templates/publications_list.html:13
+msgid "Title"
+msgstr "Título"
+
+#: ex/templates/article_details.html:13 ex/templates/articles_list.html:13
+#: ex/templates/publications_list.html:14
+msgid "Synopsis"
+msgstr "Sinopsis"
+
+#: ex/templates/article_details.html:14
+msgid "Content"
+msgstr "Contenido"
+
+#: ex/templates/article_details.html:15 ex/templates/articles_list.html:14
+msgid "Writer"
+msgstr "Autor/a"
+
+#: ex/templates/article_details.html:16 ex/templates/articles_list.html:15
+#: ex/templates/publications_list.html:15
+msgid "Created"
+msgstr "Creado"
+
+#: ex/templates/article_details.html:17 ex/templates/articles_list.html:16
+msgid "When"
+msgstr "Hace"
+
+#: ex/templates/article_details.html:30
+msgid "Add to favourites"
+msgstr "Añadir a favoritos"
+
+#: ex/templates/article_publish.html:6 ex/templates/article_publish.html:11
+msgid "Publish"
+msgstr "Publicar"
+
+#: ex/templates/articles_list.html:27
+msgid "Read"
+msgstr "Leer"
+
+#: ex/templates/favourites_list.html:6 ex/templates/nav.html:31
+msgid "Favourites"
+msgstr "Favoritos"
+
+#: ex/templates/login.html:8
+msgid "username"
+msgstr "usuario"
+
+#: ex/templates/login.html:11
+msgid "password"
+msgstr "contraseña"
+
+#: ex/templates/login.html:14
+msgid "Login"
+msgstr "Iniciar Sesión"
+
+#: ex/templates/nav.html:27 ex/templates/register.html:6
+#: ex/templates/register.html:11 ex/templates/register.html:45
+msgid "Register"
+msgstr "Registrarse"
+
+#: ex/templates/nav.html:34 ex/templates/publications_list.html:6
+msgid "Publications"
+msgstr "Publicaciones"
+
+#: ex/templates/nav.html:42
+msgid "logged as"
+msgstr "Conectado como"
+
+#: ex/templates/nav.html:45
+msgid "Logout"
+msgstr "Cerrar Sesión"
+
+#: ex/templates/publications_list.html:10
+msgid "Create publication"
+msgstr "Crear publicación"

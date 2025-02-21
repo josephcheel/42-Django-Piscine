@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load bootstrap5 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	{% load static %}
+	{% load i18n %}
+	<title>
+		42 {% translate "Articles" %} | {% block title %}{% endblock %}
+	</title>
+	<link rel="icon" href="{% static 'repo.svg' %}" type="image/svg">
+</head>
+<body>
+	<div class="position-absolute top-0 end-0 mt-3 me-3">
+		{% get_current_language as LANGUAGE_CODE %}
+		{% get_available_languages as LANGUAGES %}
+		<a href="{% for lang in LANGUAGES %}
+					{% if lang.0 != LANGUAGE_CODE %}
+								/{{ lang.0 }}/
+					{% endif %}
+				{% endfor %}" 
+		class="text-info">{% translate "Translate to English" %}</a>
+    </div>
+	<div class="container mt-5" style="max-width: 100%;">
+		<div class="container mb-5 ms-0">
+				{% if form.non_field_errors %}
+					<div class="alert alert-danger d-flex justify-content-center" role="alert alert-dismissible fade show align-middle">
+						{{ form.non_field_errors }}
+					</div>
+				{% endif %}
+			<h1 class="h1 d-inline">{% translate "Articles" %}</h1>
+			<h3 class="text-muted d-inline ms-2">{% trans "Share your writings" %}</h3> 
+		</div>
+		{% include 'nav.html' %}
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>

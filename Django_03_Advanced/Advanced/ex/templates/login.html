@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% block content %}
+	<form method="POST" class="form-inline ms-auto" action="{% url 'login' %}">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col">
+				<input type="text" class="form-control" required name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" placeholder="{% translate "username" %}">
+			</div>
+			<div class="col">
+				<input type="password" class="form-control" required name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" placeholder="{% translate "password" %}">
+			</div>
+			<div class="col">
+				<button type="submit" class="btn btn-primary mb-2">{% translate "Login" %}</button>
+			</div>
+		</div>
+	</form>
+{% endblock %}

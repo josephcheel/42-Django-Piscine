@@ -1,0 +1,50 @@
+<!-- {% load static %} -->
+<!-- {% load i18n %} -->
+<style>
+	.nav-item.active {
+    background-color: rgba(59, 59, 59, 0.701);
+    border-radius: 5px;
+	}
+	.nav-item.active .nav-link {
+		color: white 
+	}
+</style>
+<nav class="navbar navbar-expand navbar-dark bg-dark rounded">
+	<a class="navbar-brand ms-3" href="{% url 'home' %}">
+		<img src="{% static 'repo.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+  
+	<div class="collapse navbar-collapse" id="navbarsExample02">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item {% if request.resolver_match.url_name == 'articles' %}active{% endif %}">
+				<a class="nav-link" href="{% url 'articles' %}">{% translate "Articles" %}</a>
+			</li>
+			{% if not user.is_authenticated %}
+				<li class="nav-item {% if request.resolver_match.url_name == 'register' %}active{% endif %}">
+					<a class="nav-link" href="{% url 'register' %}">{% translate "Register" %}</a>
+				</li>
+			{% else %}
+				<li class="nav-item {% if request.resolver_match.url_name == 'favourites' %}active{% endif %}">
+					<a class="nav-link" href="{% url 'favourites' %}">{% translate "Favourites" %}</a>
+				</li>
+				<li class="nav-item {% if request.resolver_match.url_name == 'publications' %}active{% endif %}">
+					<a class="nav-link" href="{% url 'publications' %}">{% translate "Publications" %}</a>
+				</li>
+			{% endif %}
+		</ul>
+		{% if not user.is_authenticated and request.resolver_match.url_name != 'register' %}
+			{% include 'login.html' %}
+		{% elif request.resolver_match.url_name != 'register' %}
+			<span class="navbar-text ms-auto">
+				{% translate "logged as" %} {{ user.username }}
+			</span>
+			<span class="navbar-text ms-5 me-5">
+				<a href="{% url 'logout' %}">{% translate "Logout" %}</a>
+			</span>
+		{% endif %}
+	</div>
+</nav>
+

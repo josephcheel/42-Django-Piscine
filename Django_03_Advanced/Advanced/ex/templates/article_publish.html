@@ -1,0 +1,16 @@
+{% extends 'Base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{% translate "Publish" %}
+{% endblock %}
+
+{% block content %}
+<form method="POST" class="mt-5 align-middle w-50 mx-auto">
+		<h2>{% translate "Publish" %}</h2>
+		{% csrf_token %}
+		{{ form.as_p}}
+		<input type="submit"></input>
+	</form>
+{% endblock %}
