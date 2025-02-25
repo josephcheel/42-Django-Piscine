@@ -7,11 +7,6 @@ from .models import chatRoom
 
 @login_required(login_url='/')
 def chat_view(request, *args, **kwargs):
-	from django.shortcuts import render, redirect
-from django.http import Http404
-
-@login_required(login_url='/')
-def chat_view(request, *args, **kwargs):
 	room_name = kwargs.get('room_name')
 
 	if room_name:
