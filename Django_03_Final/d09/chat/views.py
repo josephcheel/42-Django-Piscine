@@ -10,6 +10,7 @@ def chat_view(request, *args, **kwargs):
 	from django.shortcuts import render, redirect
 from django.http import Http404
 
+@login_required(login_url='/')
 def chat_view(request, *args, **kwargs):
 	room_name = kwargs.get('room_name')
 
@@ -20,9 +21,6 @@ def chat_view(request, *args, **kwargs):
 			return redirect('chat:index')
 
 		last_three_messages = chat_room.last_three_messages.all()
-		print(type(last_three_messages))
-		for message in last_three_messages:
-			print(message.message)
 		return render(request, 'chat.html', {
 			'chatRoom': chat_room,
 			'messages': last_three_messages

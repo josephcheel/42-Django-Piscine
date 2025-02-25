@@ -108,7 +108,6 @@ class ChatConsumer(WebsocketConsumer):
 		except chatRoom.DoesNotExist:
 			return
 
-		print("new message", message)
 		if room.last_three_messages.count() == 3:
 			room.last_three_messages.order_by('created_at').first().delete()
 
