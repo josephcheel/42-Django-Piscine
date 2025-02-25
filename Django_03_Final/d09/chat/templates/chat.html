@@ -5,7 +5,11 @@
 {% block styles %}
 	<style>
 		#chat-box {
-			height: 78vh;  
+
+			height: 78vh;
+			@media (max-width: 768px) {
+				height: 70vh;
+			}
 			overflow-y: auto;
 			/* scrollbar-color: #f1f1f1 #f1f1f1; */
 			scrollbar-color: #c4dcfa #cbc7fa00;
@@ -22,6 +26,7 @@
 			border: 1px solid #f1f1f1;
 			border-radius: 15px;
 			padding: 2rem;
+			word-wrap: break-word;
 		}
 		.notice-box {
 			border: 1px solid #f1f1f1;
@@ -31,7 +36,9 @@
 		.my-message-box {
 			border: 1px solid #f1f1f1;
 			border-radius: 20px 20px 0 20px;
-			padding: 1rem, 1rem, 20rem, 1rem;
+			padding: 1rem, 1rem, 1rem, 1rem;
+			margin-bottom: 0.2rem;
+			padding-right: 0.4rem;
 			margin-left: 5em;
 		}
 		.other-message-box {
@@ -44,7 +51,8 @@
 			border: 1px solid #f1f1f1;
 			border-radius: 15px;
 			width: 100%;
-			padding: 1.5em 1.5em 1.5em 1.5em;
+			padding: 1.5em;
+			word-wrap: break-word;
 		}
 	</style>
 {% endblock %}
@@ -52,17 +60,20 @@
 	<div class="d-flex justify-content-center align-items-center w-100 h-100">
 		<section class="container row p-2"> 
 			<!-- w-100 h-100 -->
-			<main class="col-8 d-flex flex-column">
+			<main class="col-12 col-md-8 d-flex flex-column">
 				<div>
 					<div class="d-flex justify-content-between align-items-center mb-2">
 						<h1 class="mb-0">Chatroom: <strong>{{ chatRoom.name }}</strong></h1>
-						<a href="{% url 'chat:index' %}" class="btn btn-secondary border">
+						<a href="{% url 'chat:index' %}" class="btn btn-secondary border" style="font-size: 0.7rem;">
 							Back to chatrooms list
 						</a>
+						<!-- <a href="{% url 'chat:index' %}" class="btn btn-secondary border d-flex flex-column justify-content-between" style="width: 30px; height: 20px; padding: 0;">
+							<img src="">
+						  </a> -->
 					</div>
 					<div class="container border mb-2" id="chat-box">
 						<div class="alert alert-success mt-3 welcome-box">
-							<h4 class="alert-heading">Welcome to the Chatroom, <strong>{{ chatRoom.name }}</strong>!</h4>
+							<h4 class="alert-heading ">Welcome to the Chatroom, <strong>{{ chatRoom.name }}</strong>!</h4>
 							<!-- <p>We're excited to have you here! You've successfully joined the chatroom and are ready to connect with others. Feel free to jump into the conversation anytime!</p> -->
 							<p>{{ chatRoom.description }}</p>
 							<hr>
@@ -71,15 +82,15 @@
 						  </div>						  
 						<hr class="mb-5">
 						{% for message in messages %}
-							{% if message.user == user %}
+							{% if message.sender == user %}
 								<div class="row">
 									<div class="col-12">
 										<div class="d-flex justify-content-end">
 											<div class="alert alert-info my-message-box">
-												<div class="mb-1">
+												<div class="mb-0">
 													{{message.message}}
 												</div>
-												<div class="position-absolute end-0 bottom-0 me-2 mb-1 text-muted" style="font-size: 0.8rem;">
+												<div class="end-0 bottom-0 text-muted mt-0"  style="font-size: 0.8rem;">
 													<small><strong>{{message.sender.username}}</strong></small> <!--Truncate the string-->
 												</div>
 											</div>
@@ -91,10 +102,10 @@
 									<div class="col-12">
 										<div class="d-flex justify-content-start">
 											<div class="alert alert-primary other-message-box">
-												<div class="mb-1">
+												<div class="mb-0">
 													{{ message.message }}
 												</div>
-												<div class="position-absolute end-0 bottom-0 me-2 mb-1 text-muted" style="font-size: 0.8rem;">
+												<div class="end-0 bottom-0 text-muted" style="font-size: 0.8rem;">
 													<small><strong>{{message.sender.username}}</strong></small>
 												</div>
 											</div>
@@ -107,11 +118,11 @@
 					</div>
 				</div>
 				<form class="row d-flex justify-content-center flex-grow-0 py-3 px-4 border mt-auto mb-2 pe-2 ps-2" id="chat-form" >
-					<div class="col-11">
+					<div class="col-lg-11 col-9">
 						<label for="inputMessage" class="visually-hidden">Message</label>
 						<input type="text" class="form-control form-control-lg" id="inputMessage" placeholder="Type your message">
 					</div>
-					<div class="col-1 d-flex ps-0 align-items-center">
+					<div class="col-lg-1 col-3 d-flex ps-0 align-items-center">
 						<button type="submit" class="btn btn-light border ">Send</button>
 					</div>
 				</form>
@@ -127,6 +138,7 @@
 				<div class="row" id="connected-users">
 				</div>
 			</aside>
+			
 		</section>
 	</div>
 {% endblock %}

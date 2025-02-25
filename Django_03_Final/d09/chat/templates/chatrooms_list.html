@@ -7,10 +7,12 @@
 {% block content %}
 
 	<div class="container mt-5">
-		<a href="{% url 'account:logout' %}" class="refresh btn btn-dark position-absolute end-0 top-0 m-5" >
-			Logout
-		</a>
-		<h1>Availeable Chatrooms</h1>
+		<div class="d-flex justify-content-center align-items-center mb-2">
+			<h1 class="h1 ms-3">Availeable Chatrooms</h1>
+			<a href="{% url 'account:logout' %}" class="refresh btn btn-dark end-0 top-0 m-5">
+				Logout
+			</a>
+		</div>
 		<div class="row">
 			{% for chatroom in chatrooms %}
 				<div class="col-md-3 mb-4">
